@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-
+// So meital will be happy. :)
 namespace Ex03.GarageLogic
 {
     public class Garage
