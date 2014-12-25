@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-// So meital will be happy. :)
+
 namespace Ex03.GarageLogic
 {
     public class Garage
@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
 
             if (isVehicleExists == false)
             {
-                throw new ArgumentException("This License Plate is WRONG!");
+                throw new ArgumentException("This License Plate is WRONG! This license plate doesn't exists in the garage.");
             }
 
             return currentVehicle;
@@ -55,17 +55,16 @@ namespace Ex03.GarageLogic
         }
 
         //סעיף 2
-        //מה זאת אומרת עם אפשרות לסינון לפי המצב שלהם במוסך, לא צריך לעשות את זה אוטומטית ? או שלשאול את המשתמש אם לסנן לפי משהו
         public List<string> getLicensePlateOfAllTheVehiclesInTheGarage()
         {
-            List<string> allVehiclesLicensePlate = getVehiclesLicensePlate(VehicleInGarage.eVehicleStatus.InRepair);
-            allVehiclesLicensePlate.AddRange(getVehiclesLicensePlate(VehicleInGarage.eVehicleStatus.Repaired));
-            allVehiclesLicensePlate.AddRange(getVehiclesLicensePlate(VehicleInGarage.eVehicleStatus.Paid));
+            List<string> allVehiclesLicensePlate = getVehiclesLicensePlateByStatus(VehicleInGarage.eVehicleStatus.InRepair);
+            allVehiclesLicensePlate.AddRange(getVehiclesLicensePlateByStatus(VehicleInGarage.eVehicleStatus.Repaired));
+            allVehiclesLicensePlate.AddRange(getVehiclesLicensePlateByStatus(VehicleInGarage.eVehicleStatus.Paid));
 
             return allVehiclesLicensePlate;
         }
         //המשך סעיף 2
-        public List<string> getVehiclesLicensePlate(VehicleInGarage.eVehicleStatus i_FilterByStatus)
+        public List<string> getVehiclesLicensePlateByStatus(VehicleInGarage.eVehicleStatus i_FilterByStatus)
         {
             List<string> licensePlates = new List<string>();
 
@@ -114,17 +113,10 @@ namespace Ex03.GarageLogic
         }
 
         //סעיף 7 
-        //הפונקציה הזאת זורקת שגיאה במקרה שלא מצאה לוחית רישוי תואמת יש לטפל בUI
-        public StringBuilder showVehicleDetails(string i_LicensePlate)
+        public void getVehicleDetails(string i_LicensePlate, ref StringBuilder o_VehicleDatails)
         {
             VehicleInGarage currentVehicle = FindVehicleByLicensePlate(i_LicensePlate);
-
-
-            ////////צריך להמשיך את הפונקציה הזאת ואין לי עוד כוח חחחח
-            StringBuilder vehicelDetails = currentVehicle.GetVehicleDetails();
-
-            return vehicelDetails;
+            currentVehicle.GetVehicleDetails(ref o_VehicleDatails);
         }
-        
     }
 }

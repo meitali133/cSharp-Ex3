@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -7,11 +8,16 @@ namespace Ex03.GarageLogic
         protected float m_CurrentEnergyLevel;
         protected readonly float r_MaxEnergyLevel;
 
-        EnergySource(float i_MaxEnergyLevel)
+        public EnergySource()
+        {
+        }
+
+        public EnergySource(float i_MaxEnergyLevel)
         {
             r_MaxEnergyLevel = i_MaxEnergyLevel;
         }
 
+        //לשנות את זה שלא יהיה PUBLIC 
         public float CurrentEnergyLevel
         {
             get
@@ -34,7 +40,8 @@ namespace Ex03.GarageLogic
         }
 
 
-      //  protected abstract void GetEnergyData(out StringBuilder o_EnergyData); על מנת להחזיר את הנתונים על פי סוג דלק/חשמלי
+        /////צריך לבדוק איך זה הולך לילדים בהתאם לסוג המצביע איך צריך להגדיר את הפונקציה
+        public virtual abstract void GetEnergySourceDetails(ref StringBuilder o_vehicleDetails);
 
         
     }

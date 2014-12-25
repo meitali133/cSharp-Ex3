@@ -112,18 +112,12 @@ namespace Ex03.GarageLogic
             m_VehicleStatus = i_NewVehicleStatus;
         }
 
-
-        //) שם דגם,, מצב במוסך פירוט הגלגלים לחץ אוויר ויצרן מצב דלק + סוג דלק או מצב מצבר
-        //ושאר הפרטים הרלוונטים
-//צריך להמשיך ואין לי כוח
-        internal StringBuilder GetVehicleDetails()
+        internal void GetVehicleDetails(ref StringBuilder o_VehicleDetails)
         {
-
-            StringBuilder vehicleDetails = new StringBuilder();
-            vehicleDetails.AppendFormat("License Plate: {3} , Owner name: {0} ,Phone number: {1} , Vehicle status: {2}",
+            o_VehicleDetails.AppendFormat("License Plate: {3} , Owner name: {0} ,Phone number: {1} , Vehicle status: {2}",
                 Name,PhoneNumber,VehicleStatus.ToString(), r_Vehicle.LicensePlate);
-           
-            return vehicleDetails;
+            r_Vehicle.GetVehicleDetails(ref o_VehicleDetails);
+          
         }
 
     }

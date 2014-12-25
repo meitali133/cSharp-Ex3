@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -87,6 +88,27 @@ namespace Ex03.GarageLogic
         internal void CalculateAndSetEnergyPercentLeft()
         {
             m_EnergyPrecentLeft = (m_EnergySource.CurrentEnergyLevel * 100) / m_EnergySource.MaxEnergyLevel;
+        }
+
+        internal virtual void GetVehicleDetails(ref StringBuilder o_VehicleDetails)
+        {
+            int tireIndex = 1;
+
+            o_VehicleDetails.AppendFormat(
+                "{0}License plate number: {1}.{0}Model Name: {2}.{0}Energy Level: {3}%{0}",
+                Environment.NewLine,
+                m_LicensePlate,
+                m_ModelName,
+                string.Format("{0:0.00}", m_EnergyPrecentLeft));
+
+            ///////צריך איכשהו שהמתודה האבסטרקטית תעבוד..... לא יודעת עוד איך 
+            m_EnergySource.GetEnergySourceDetails(ref o_VehicleDetails);
+            foreach (Tire tire in m_TireCollection)
+            {
+                o_VehicleDetails.AppendFormat("{0}Tire {1} data:", Environment.NewLine, tireIndex);
+                tire.GetTireDetails(ref o_VehicleDetails);
+                tireIndex++;
+            }
         }
     }
 }

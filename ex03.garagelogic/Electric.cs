@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -12,6 +13,16 @@ namespace Ex03.GarageLogic
             }
 
             this.m_CurrentEnergyLevel += i_AmountHoursToCharge;
+        }
+
+        public override abstract void GetEnergySourceDetails(ref StringBuilder o_vehicleDetails)
+        {
+            Electric electricEngine = (Electric)this;
+            o_vehicleDetails.AppendFormat(
+                "{0}The current battery level is: {1} hours. {0}Max battery time is: {2} hours{0}",
+                Environment.NewLine,
+                electricEngine.CurrentEnergyLevel,
+                electricEngine.MaxEnergyLevel);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace Ex03.GarageLogic
 {
@@ -73,5 +74,11 @@ namespace Ex03.GarageLogic
             }
         }
 
+
+        internal void GetTireDetails(ref StringBuilder o_VehicleDetails)
+        {
+            o_VehicleDetails.AppendFormat(
+                "{0}Tire manufacturer: {1}.{0}Current air pressure: {2}.{0}Max air pressure: {3}.", Environment.NewLine, m_ManufacturerName, m_CurrentAirPressure.ToString(), r_MaxAirPressure.ToString());
+        }
     }
 }
